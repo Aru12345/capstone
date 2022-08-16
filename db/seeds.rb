@@ -6,6 +6,14 @@
 #   movies = Movie.create([{ name: 'Star Wars' }, { name: 'Lord of the Rings' }])
 #   Character.create(name: 'Luke', movie: movies.first)
 
+#User
+
+hannah=User.create!(name:"Hannah",email:"hannah@gmail.com")
+joe=User.create!(name:"Joe",email:"joe@gmail.com")
+selena=User.create!(name:"Selena",email:"selena@gmail.com")
+
+puts "Done user"
+
 
 #Restaurant
 
@@ -23,13 +31,6 @@ royalty=Restaurant.create(name:"The Royalton Park Ave Rooftop Lounge & Pool",cui
 
 #puts "Done res"
 
-#User
-
-hannah=User.create(name:"Hannah",email:"hannah@gmail.com")
-joe=User.create(name:"Joe",email:"joe@gmail.com")
-selena=User.create(name:"Selena",email:"selena@gmail.com")
-
-puts "Done user"
 
 #Review
 Review.create(img:"https://cdn.apartmenttherapy.info/image/upload/f_jpg,q_auto:eco,c_fill,g_auto,w_1500,ar_1:1/k%2Farchive%2Fc54907276a7cb6e0545ae2128bdc984e86b6cb9d",r:"Loved the alfredo chicken pasta.The chicken was roasted to perfection.Rose Wine along with just made it better.",restaurant_id:daniel.id,user_id: hannah.id)
