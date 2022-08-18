@@ -10,7 +10,7 @@ function TimesSquare(){
         <source  src={tsquare} type="video/mp4"/> 
      
      </video>
-     <Link className="tour" to="/home">Get Started 🍎</Link>
+     <Link className="tour" to="/login">Get Started 🍎</Link>
      </div>
    
   
