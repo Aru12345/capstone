@@ -42,7 +42,7 @@ if(token && !loggedIn){
   .then(user=>loginUser(user))
   
 }
-},[])
+},[loggedIn])
 
 const logoutUser=()=>{
   setCurrentUser({})
@@ -51,16 +51,16 @@ const logoutUser=()=>{
 }
   return (
     <div className="App">
-       {loggedIn? <h1>Hey  loggedIn</h1> :null }
+       {loggedIn? <h1>Hey   loggedIn </h1> :null }
        <Navbar loggedIn={loggedIn} logoutUser={logoutUser}/>
       
      
       <Routes>
       
       <Route path="/home" element={<Home />} />
-      <Route exact path="/signup" element={<Signup  loginUser={loginUser}/>} />
-      <Route exact path="/login" element={<Login loginUser={loginUser} />} />
-      <Route exact path="/restaurants" element={<Restaurants />} />
+      <Route exact path="/signup" element={<Signup  loginUser={loginUser} loggedIn={loggedIn}/>} />
+      <Route exact path="/login" element={<Login loginUser={loginUser} loggedIn={loggedIn} />} />
+      <Route exact path="/restaurants" element={<Restaurants loggedIn={loggedIn} />} />
       <Route exact path="/"  element={<TimesSquare />} />
 
       </Routes>
