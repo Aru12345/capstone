@@ -1,79 +1,69 @@
-import { useState, useContext } from "react"
+import { useState } from "react"
 import { useNavigate } from "react-router-dom"
+import { headers} from "./Globals";
 
 
-import Box from '@mui/material/Box';
-import { TextField } from "@mui/material";
-import { Button} from "@mui/material";
-function Signup(){
-    let navigate = useNavigate()
+function Signup({loginUser}){
+    const navigate = useNavigate();
+ const[name,setName]=useState('');
+ const[email,setEmail]=useState('');
+ const[password,setPassword]=useState('');
+
+const handleSubmit=e=>{
+  e.preventDefault();
+
+  const strongParams={
+   user:{
+      name,
+      email,
+      password
+   }
+    }
 
   
 
+  fetch('/signup',{
+    method:"POST",
+    headers,
+    body: JSON.stringify(strongParams)
 
+  })
+  .then(resp=>resp.json())
+  .then(data=>{
+    loginUser(data.user)
+   
+    localStorage.setItem('jwt',data.token)
+    navigate('/home');
+  })
+
+}
 
     return(
         <>
         <h1 className="heading">Big Apple Traveller🗽</h1>
-        <Box
-      sx={{
-        width: 500,
-        height: 500,
-        backgroundColor: 'white',
-        marginLeft:48,
-        borderRadius:3,
-      
-        
-      }}
-    >
-        <Box mt={2} padding={1}>
-        <h3 className="cac">Create an Account</h3>
-        </Box>
-       
-         <Box
-      component="form"
-      sx={{
-        '& .MuiTextField-root': { m: 1, width: '25ch' },
-      }}
-      noValidate
-      autoComplete="off"
-    >
-          <TextField
-        
-          id="outlined-required"
-          label="Name"
-       
-        />
-         <TextField
-          required
-          id="outlined-required"
-          label="Email"
-        />
-         <TextField
-          id="outlined-password-input"
-          label="Password"
-          type="password"
-          
-        />
+        <div>
+<h2>Create Account</h2>
+<form onSubmit={handleSubmit}>
+<div>
+  <label htmlFor="name">Name:</label>
+  <input type="text" name="name" id="name" value={name}  onChange={e=>setName(e.target.value)}/>
+  </div>
+  <div>
+  <label htmlFor="email">Email:</label>
+  <input type="text" name="email" id="email" value={email} onChange={e=>setEmail(e.target.value)} />
+  </div>
+  <div>
+  <label htmlFor="password">Password:</label>
+  <input type="password" name="password" id="password" value={password} onChange={e=>setPassword(e.target.value)} />
+  </div>
+  <input type="submit" value="singup" />
+</form>
+</div>
 
-    </Box>
-    
-    <Button variant="contained"
-    sx={{ mt: 3, mb: 2, backgroundColor: "black" }}
-    >Sign Up</Button>
-
-
-<Box component="span" sx={{ p: 2 }}>
-    <h3 className="headingbottom">Already have an Account?</h3>
-<Button variant="contained"   sx={{ mt: 0.5, mb: 2, backgroundColor: "black" }} onClick={() => navigate("/login")}>Log In</Button>
-    </Box>
-
-     
-
-    </Box>
     
         
    </>
     )
 }
 export default Signup;
+

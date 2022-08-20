@@ -1,76 +1,72 @@
 import "./Login.css"
 
 
-import React, { useState } from "react";
-import { Link, useNavigate } from "react-router-dom"
-
-import Button from '@mui/material/Button';
-
-import Box from '@mui/material/Box';
-import TextField from '@mui/material/TextField';
+import { useState } from "react"
+import { useNavigate } from "react-router-dom"
+import { headers} from "./Globals";
 
 
-function Login(){
-  const [email, setEmail] = useState("");
-  const [password, setPassword] = useState("");
+function Login({loginUser}){
+  const navigate = useNavigate()
+ 
+ const[email,setEmail]=useState('');
+ const[password,setPassword]=useState('');
+
+const handleSubmit=e=>{
+  e.preventDefault();
+
+  const strongParams={
+   
+      email,
+      password
+   
+    }
+
   
-  let navigate = useNavigate();
 
-  
+  fetch('/login', {
+    method:"POST",
+    headers,
+    body: JSON.stringify(strongParams)
+
+  })
+  .then(resp=>resp.json())
+  .then(data=>{
+    loginUser(data.user)
+   
+    localStorage.setItem('jwt',data.token)
+    navigate('/home');
+  })
+
+}
+
     return(
-        <div id="login" >
-          <h1 className="heading">Big Apple Traveller🗽</h1>
-          <Box
-      sx={{
-        width: 500,
-        height: 500,
-        backgroundColor: 'white',
-        marginLeft:48,
-        borderRadius:3,
-      
-        
-      }}
-    >
-  <Box mt={2} padding={1}>
-        <h3 className="cac">Sign In</h3>
-        </Box>
-        <Box
-      component="form"
-      sx={{
-        '& .MuiTextField-root': { m: 1, width: '25ch' },
-      }}
-      noValidate
-      autoComplete="off"
-    >
-        
-         <TextField
-          required
-          id="outlined-required"
-          label="Email"
-        />
-         <TextField
-          id="outlined-password-input"
-          label="Password"
-          type="password"
-          
-        />
+        <>
+        <h1 >Big Apple Traveller🗽</h1>
+        <h2>Login form</h2>
+        <div>
 
-    </Box>
-    <Button variant="contained"
-    sx={{ mt: 3, mb: 2, backgroundColor: "black" }}
-    >Log In</Button>
+<form onSubmit={handleSubmit}>
+<div>
+  
+  <label htmlFor="email">Email:</label>
+  <input type="text" name="email" id="email" value={email} onChange={e=>setEmail(e.target.value)} />
+  </div>
+  <div>
+  <label htmlFor="password">Password:</label>
+  <input type="password" name="password" id="password" value={password} onChange={e=>setPassword(e.target.value)} />
+  </div>
+  <input type="submit" value="login" />
+</form>
+</div>
 
-<Box component="span" sx={{ p: 2 }}>
-    <h3 className="headingbottom">Dont have an account? Sign Up</h3>
-<Button variant="contained"   sx={{ mt: 0.5, mb: 2, backgroundColor: "black" }} onClick={() => navigate("/signup")}>Create an Account</Button>
-    </Box>
-        
-
-    </Box>
     
-       
-      </div>
-       
+        
+   </>
     )
 }
 export default Login;
+
+
+
+

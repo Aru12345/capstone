@@ -1,6 +1,6 @@
 
 import './App.css';
-import { Routes, Route } from "react-router-dom";
+import { Route, Routes} from "react-router-dom";
 import { useEffect,useState } from 'react';
 
 import TimesSquare from './components/TimesSquare';
@@ -8,39 +8,77 @@ import Login from './components/Login';
 import Signup from './components/Signup';
 import Navbar from './components/Navbar';
 import Home from './components/Home';
+import { headers ,getToken} from './components/Globals';
+import Restaurants from './components/Restaurants';
+
 
 function App() {
-  const [user, setUser] = useState(null);
+  
+  const[currentUser,setCurrentUser]=useState({});
+  const[loggedIn,setLoggedIn]=useState(false);
+
+  const loginUser=user=>{
+    setCurrentUser(user);
+    setLoggedIn(true);
+  }
+  
 
   useEffect(() => {
-    document.title = "BigAppleTraveller🍎";
+    document.title = "🍎";
   }, []);
 
-  useEffect(() => {
-    // auto-login
-    fetch("/me", { credentials: "same-origin" }).then((r) => {
-      if (r.ok) {
-        r.json().then((user) => setUser(user));
-      }
-    });
-  }, [setUser]);
+useEffect(()=>{
+const token=localStorage.getItem("jwt")
+if(token && !loggedIn){
+  fetch('/getcurrentuser',{
+    methos:"GET",
+    headers:{
+      ...headers,
+      ...getToken()
+     
+    }
+  })
+  .then(resp=>resp.json())
+  .then(user=>loginUser(user))
+  
+}
+},[])
 
-  if (!user) return <Login error={'please login'} onLogin={setUser} />;
-
+const logoutUser=()=>{
+  setCurrentUser({})
+  setLoggedIn(false)
+  localStorage.removeItem("jwt");
+}
   return (
     <div className="App">
-       <Navbar user={user} setUser={setUser} />
+       {loggedIn? <h1>Hey  loggedIn</h1> :null }
+       <Navbar loggedIn={loggedIn} logoutUser={logoutUser}/>
+      
+     
       <Routes>
       
-      <Route exact path="/home" element={<Home user={user} />} />
-      <Route exact path="/signup" element={<Signup />} />
-      <Route exact path="/login" element={<Login />} />
+      <Route path="/home" element={<Home />} />
+      <Route exact path="/signup" element={<Signup  loginUser={loginUser}/>} />
+      <Route exact path="/login" element={<Login loginUser={loginUser} />} />
+      <Route exact path="/restaurants" element={<Restaurants />} />
       <Route exact path="/"  element={<TimesSquare />} />
+
       </Routes>
-      
 
     </div>
   );
 }
 
 export default App;
+
+/*
+  <Routes>
+      
+      <Route exact path="/home" element={<Home user={user} />} />
+      <Route exact path="/signup" element={<Signup />} />
+      <Route exact path="/login" element={<Login />} />
+      <Route exact path="/"  element={<TimesSquare />} />
+
+      </Routes>
+  
+*/
