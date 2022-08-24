@@ -1,68 +1,76 @@
 import "./Login.css"
 
+import tsquare from '../mediafiles/tsquare.mp4'
+import "./TimesSquare.css";
 
-import { useState,useEffect } from "react"
-import { useNavigate } from "react-router-dom"
-import { headers} from "./Globals";
+import { useState} from "react"
 
 
-function Login({loginUser,loggedIn}){
-  const navigate = useNavigate()
- 
- const[email,setEmail]=useState('');
- const[password,setPassword]=useState('');
+function Login({onLogin}){
+  const [email, setEmail] = useState("");
+  const [password, setPassword] = useState("");
+  const [errors, setErrors] = useState([]);
+  const [isLoading, setIsLoading] = useState(false);
 
- useEffect(()=>{
-if(loggedIn){
-  navigate("/home")
-}
- },[loggedIn])
- 
-const handleSubmit=e=>{
-  e.preventDefault();
+  function handleSubmit(e) {
+    e.preventDefault();
+    setIsLoading(true);
+    fetch("/login", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify({ email, password }),
+    }).then((r) => {
+      setIsLoading(false);
+      if (r.ok) {
+        r.json().then((user) => onLogin(user));
+      } else {
+        r.json().then((err) => setErrors(err.errors));
+      }
+    });
+  }
 
-  const strongParams={
-   
-      email,
-      password
-   
-    }
-
-  fetch('/login', {
-    method:"POST",
-    headers,
-    body: JSON.stringify(strongParams)
-
-  })
-  .then(resp=>resp.json())
-  .then(data=>{
-    loginUser(data.user)
-   
-    localStorage.setItem('jwt',data.token)
-    navigate('/home');
-  })
-
-}
+    
 
     return(
         <>
-        <h1 >Big Apple Traveller🗽</h1>
-        <h2>Login form</h2>
-        <div>
+      <div class="video-container">
+    <video autoPlay muted loop id="myVideo">
+        <source  src={tsquare} type="video/mp4"/> 
+    
+     </video>
+     
+     <form  className="tour" onSubmit={handleSubmit} >
 
-<form onSubmit={handleSubmit}>
-<div>
   
-  <label htmlFor="email">Email:</label>
-  <input type="text" name="email" id="email" value={email} onChange={e=>setEmail(e.target.value)} />
-  </div>
+<div className="mb-3">
+        <label htmlFor="email"  className="form-label thelabel" >Email</label>
+        <input
+          type="text"
+          id="email"
+          className="form-control"
+          value={email}
+          onChange={(e) => setEmail(e.target.value)}
+        />
+    </div>
   <div>
-  <label htmlFor="password">Password:</label>
-  <input type="password" name="password" id="password" value={password} onChange={e=>setPassword(e.target.value)} />
+  <label htmlFor="password"  className="form-label thelabel">Password</label>
+        <input
+          type="password"
+          id="password"
+          className="form-control"
+          value={password}
+          onChange={(e) => setPassword(e.target.value)}
+        />
   </div>
-  <input type="submit" value="login" />
+  <button type="submit" className="btn btn-primary" >
+          {isLoading ? "Loading..." : "Login"}
+        </button>
 </form>
-</div>
+
+     </div>
+        
 
     
         
@@ -70,7 +78,6 @@ const handleSubmit=e=>{
     )
 }
 export default Login;
-
 
 
 

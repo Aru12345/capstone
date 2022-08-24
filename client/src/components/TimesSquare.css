@@ -27,4 +27,16 @@
     font-size: 62px;
     color: #a00a0a;
     font-family: sans-serif;
+  
   }
+
+
+.logintoggle{
+
+  text-decoration: none;
+  position: relative;
+  font-size: 32px;
+  color: white;
+  font-family: sans-serif;
+  top: 45vh;
+}

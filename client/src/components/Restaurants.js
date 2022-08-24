@@ -1,16 +1,25 @@
-import { useEffect } from "react";
-import { useNavigate } from "react-router-dom";
-function Restaurants({loggedIn}){
-    const navigate=useNavigate()
+import Map from "./Map";
+import Rcard from "./Rcard";
+import { useEffect, useState } from "react";
+function Restaurants(){
+    const[restaurants,setRestaurants]=useState([]);
     useEffect(()=>{
-        if(!loggedIn){
-            navigate('/home');
-        }
-    },[loggedIn])
+        fetch('/restaurants')
+        .then(res=>res.json())
+        .then(rdata=>{
+            setRestaurants(rdata)
+        })
+    },[])
     return(
         <>
+        <Map />
+        <h1>Restos</h1>
+        {
+            restaurants.map((restaurant)=>(
+                <Rcard key={restaurant.id} restaurant={restaurant}/>
+            ))
+        }
 
-            <h1>These r restos</h1>
         </>
     )
 }

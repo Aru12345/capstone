@@ -1,22 +1,19 @@
 class SessionsController < ApplicationController
- skip_before_action :authorized
-
-
-   def get_currentuser
-    #retrive a token and decode the token to get the current user
-    render json: current_user
-
-   end
-    
-   def login
-    @user=User.find_by(email: params[:email])
-    if @user && @user.authenticate(params[:password])
-        @token = encode_token({user_id: @user.id})
-        render json:{user:  @user,token: @token},status: :ok
+  skip_before_action :authorize, only: :create
+  def create
+      user = User.find_by(email: params[:email]) #verifying
+      if user&.authenticate(params[:password])
+        session[:user_id] = user.id
+        render json: user
       else
-        render json: {errors: ["Username and Password must match"]},status: :unprocessable_entity
+        render json: { errors: ["Invalid username or password"] }, status: :unauthorized
       end
+    end
 
+  def destroy
+      session.delete :user_id
+      head :no_content
+    end
+  
 
-   end
 end

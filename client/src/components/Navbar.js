@@ -1,35 +1,43 @@
-import { Link } from "react-router-dom";
-function Navbar({loggedIn,logoutUser}){
-    const loggedOutLinks=()=>{
-       return( <ul>
-           <li>
-               <Link to ="/home">Home </Link>
-                <Link to ="/login"> LogIn </Link>
-                <Link to ="/signup"> SignUp </Link>
-            </li>
-         </ul>)
-    }
 
-    const handleLogOut =e =>{
-        e.preventDefault()
-        logoutUser()
-    }
-    const loggedInLinks=()=>{
-        return( <ul>
-            <li>
-                <Link to ="/home">Home </Link>
-                 
-             </li>
-             <li><Link to="/restaurants">Restaurants</Link></li>
-             <li><a href="#" onClick={handleLogOut}> Logout</a></li>
-          </ul>)
-     }
-    return(
-        <>
+
+
+function Navbar({ setUser,user}){
+  
+  function handleLogoutClick() {
+    fetch("/logout", { method: "DELETE" }).then((r) => {
+      if (r.ok) {
+        setUser(null);
+      }
+    });
+  }
+   
+
+       return( <>
+       <h1>Navbar</h1>
+       <nav className="nav navbarstyle">
+  <a   href="/about"> About</a>
+  <a href="/restaurants">  Restaurants</a>
+  
+  <button type="button" className="btn btn-primary logoutbtn"onClick={handleLogoutClick}>Logout</button>
+
+
+</nav>
         
-         {loggedIn? loggedInLinks():loggedOutLinks()}
+  
+          
+         
         
+          
+         
         </>
     )
 }
 export default Navbar;
+
+/* if (!isAuthenticated) return <Login error={'please login'} setIsAuthenticated={setIsAuthenticated} setUser={setUser} />
+; 
+
+<a className="nav-link nlink" href="/about">  About</a>
+  <a className="nav-link nlink" href="/restaurants">Restaurants</a>
+  <button type="button" className="btn btn-primary logoutbtn"onClick={handleLogoutClick}>Logout</button>
+*/
