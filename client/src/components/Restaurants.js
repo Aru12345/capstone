@@ -1,4 +1,4 @@
-import Map from "./Map";
+import MyMap from "./MyMap";
 import Rcard from "./Rcard";
 import { useEffect, useState } from "react";
 function Restaurants(){
@@ -12,7 +12,7 @@ function Restaurants(){
     },[])
     return(
         <>
-        <Map />
+        <MyMap />
         <h1>Restos</h1>
         {
             restaurants.map((restaurant)=>(

@@ -7,7 +7,7 @@ import reportWebVitals from './reportWebVitals';
 import {BrowserRouter as Router} from 'react-router-dom';
 
 import 'mapbox-gl/dist/mapbox-gl.css';
-
+require("dotenv").config()
 
 ReactDOM.render(
   <React.StrictMode>
