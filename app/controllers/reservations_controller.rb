@@ -34,7 +34,7 @@ class ReservationsController < ApplicationController
 
     private
     
-    def review_params
+    def reservation_params
         params.permit(:name, :date, :time, :num, :contact, :occasion,:user_id,:restaurant_id)
 
     end

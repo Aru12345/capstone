@@ -6,7 +6,10 @@ import About from './components/About'
 import Navbar from './components/Navbar';
 import Restaurants from './components/Restaurants';
 import Loggin from './components/Loggin';
+import RestaurantInfo from './components/RestaurantInfo';
+import MyReservations from './components/MyReservations';
 import { Route,Routes } from 'react-router-dom';
+import Blogs from './components/Blogs';
 function App() {
   const [user, setUser] = useState(null);
  
@@ -34,8 +37,11 @@ function App() {
     <div className="App">
    <Navbar user={user} setUser={setUser} />
    <Routes>
+    <Route exact path="/blogs" element={<Blogs />} />
+    <Route exact path="/myreservations" element={<MyReservations user={user} />} />
 
-   
+   <Route exact path="/restaurants/:id" element= {<RestaurantInfo user={user} />}  />
+
       <Route exact path="/restaurants" element={<Restaurants />} />
 
      <Route exact path="/about" element={<About user={user} />} />

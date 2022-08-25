@@ -17,7 +17,8 @@ function Navbar({ setUser,user}){
        <nav className="nav navbarstyle">
   <a   href="/about"> About</a>
   <a href="/restaurants">  Restaurants</a>
-  
+  <a href="/myreservations">My Reservations</a>
+  <a href="/blogs">Blogs</a>
   <button type="button" className="btn btn-primary logoutbtn"onClick={handleLogoutClick}>Logout</button>
 
 

@@ -1,7 +1,9 @@
+
 function Rcard({restaurant}){
-    const{ name, cuisine, cost, address, hours, closed, phone, must_try, category,website}=restaurant;
+    const{ id,name, cuisine,image, cost, address, hours, closed, phone, must_try, category,website}=restaurant;
     return(
         <>
+        <img src={image}/>
         <h2>{name}</h2>
         <h3>{cuisine}</h3>
         <h3>{cost}</h3>
@@ -11,7 +13,8 @@ function Rcard({restaurant}){
         <h4>{phone}</h4>
         <h4>{must_try}</h4>
         <h4>{category}</h4>
-        <button href={website} target="_blank" >Website</button>
+        <a href={`/restaurants/${id}`}>View</a>
+        <a href={website} target="_blank" >Website</a>
         
         </>
     )

@@ -1,5 +1,6 @@
 import MyMap from "./MyMap";
 import Rcard from "./Rcard";
+
 import { useEffect, useState } from "react";
 function Restaurants(){
     const[restaurants,setRestaurants]=useState([]);
@@ -12,6 +13,7 @@ function Restaurants(){
     },[])
     return(
         <>
+   
         <MyMap />
         <h1>Restos</h1>
         {
