@@ -4,7 +4,7 @@ import tsquare from '../mediafiles/tsquare.mp4'
 import "./TimesSquare.css";
 
 import { useState} from "react"
-
+import { useNavigate } from "react-router-dom";
 
 function Login({onLogin}){
   const [email, setEmail] = useState("");
@@ -12,6 +12,7 @@ function Login({onLogin}){
   const [errors, setErrors] = useState([]);
   const [isLoading, setIsLoading] = useState(false);
 
+  const navigate=useNavigate();
   function handleSubmit(e) {
     e.preventDefault();
     setIsLoading(true);
@@ -29,6 +30,7 @@ function Login({onLogin}){
         r.json().then((err) => setErrors(err.errors));
       }
     });
+    navigate('/about')
   }
 
     

@@ -1,9 +1,8 @@
 class ReservationsController < ApplicationController
     def index
-        reservation =Reservation.all
-        render json: reservation
-
-    end
+        reservations = @current_user.reservations
+         render json: reservations
+      end
 
     def create
         reservation=Reservation.create!(reservation_params)

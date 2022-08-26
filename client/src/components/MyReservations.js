@@ -10,8 +10,7 @@ function MyReservations({user}){
         })
       },[])
 
-      let filteredReservations=reservations.filter((reservation)=>reservation.user.all)
-
+     
     return(
         <>
         <h1>My Reservations</h1>
