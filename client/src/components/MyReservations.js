@@ -1,7 +1,8 @@
-import { useState,useEffect } from "react";
+import {useEffect } from "react";
 import ReservationCard from "./ReservationCard";
-function MyReservations({user}){
-    const[reservations,setReservations]=useState([]);
+
+function MyReservations({user,reservations,setReservations}){
+   
     useEffect(()=>{
         fetch("/reservations")
         .then(res=>res.json())
@@ -13,9 +14,9 @@ function MyReservations({user}){
      
     return(
         <>
-        <h1>My Reservations</h1>
+       
         {reservations.map((reservation)=>(
-        <ReservationCard key={reservation.id} reservation={reservation} />
+        <ReservationCard key={reservation.id} reservation={reservation}  />
         
        ))
 

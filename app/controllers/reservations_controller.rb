@@ -21,11 +21,13 @@ class ReservationsController < ApplicationController
 
     def destroy
    
-        reservation = @current_user.reservation.find(params[:id])
-        if @current_user
-        reservation.destroy
+        reservation = Reservation.find_by(id:params[:id])
+        if reservation
+          reservation.destroy
+          head :no_content
+
         else
-            render json: {error: "Reservation of someone else."}, status: :not_found
+            render json: {error: "Reservation Not Found ."}, status: :not_found
         end
     end
 
