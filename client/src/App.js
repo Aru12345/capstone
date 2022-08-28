@@ -10,7 +10,7 @@ import RestaurantInfo from './components/RestaurantInfo';
 import MyReservations from './components/MyReservations';
 import { Route,Routes } from 'react-router-dom';
 import Blogs from './components/Blogs';
-
+import EditForm from './components/EditForm';
 function App() {
   const [user, setUser] = useState(null);
   const[reservations,setReservations]=useState([]);
@@ -41,6 +41,8 @@ function App() {
    <Navbar user={user} setUser={setUser} />
    <Routes>
     <Route exact path="/blogs" element={<Blogs />} />
+    
+    <Route exact path="/reservations/:id/update" element={<EditForm reservations={reservations} setReservations={setReservations} />}/>
   
     <Route exact path="/myreservations" element={<MyReservations user={user} reservations={reservations} setReservations={setReservations} />} />
 

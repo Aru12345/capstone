@@ -5,6 +5,8 @@ class UsersController < ApplicationController
       user = User.create!(user_params)
       session[:user_id] = user.id
       render json: user, status: :created
+    
+      
     end
     
     def show
@@ -18,8 +20,8 @@ class UsersController < ApplicationController
 
 
   private     
-  def user_params
-      params.permit(:name,:email,:password)
+  def user_params  
+     params.permit(:name,:email,:password)
 
   end
   def render_unprocessable_entity_response(invalid)

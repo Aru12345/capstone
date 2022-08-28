@@ -14,7 +14,7 @@ function Navbar({ setUser,user}){
 
        return( <>
        <h1>Navbar</h1>
-       <nav className="nav navbarstyle">
+   <nav className="nav navbarstyle">
   <a   href="/about"> About</a>
   <a href="/restaurants">  Restaurants</a>
   <a href="/myreservations">My Reservations</a>
