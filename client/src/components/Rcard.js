@@ -3,7 +3,7 @@ function Rcard({restaurant}){
     const{ id,name, cuisine,image, cost, address, hours, closed, phone, must_try, category,website}=restaurant;
     return(
         <>
-        <img src={image } alt="restos image"/>
+        <img src={image } alt="pic"/>
         <h2>{name}</h2>
         <h3>{cuisine}</h3>
         <h3>{cost}</h3>

@@ -8,7 +8,7 @@ function Loggin({onLogin}){
     return(
         <> 
         {showLogin ? (
-            <div class="video-container">
+            <div className="video-container">
             <video autoPlay muted loop id="myVideo">
                 <source  src={tsquare} type="video/mp4"/> 
             

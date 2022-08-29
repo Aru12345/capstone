@@ -1,57 +1,47 @@
 import { useEffect, useState } from "react";
-import { useLocation } from "react-router-dom";
-function EditForm({reservations,setReservations}){
+import {  useLocation, useNavigate } from "react-router-dom";
+function EditForm({reservations,setReservations,onUpdateReservation}){
 
-    const[data,setData]=useState()
     const[id,setId]=useState();
     const[reservation,setReservation]=useState();
   
     const location=useLocation();
+    const navigate=useNavigate();
     
-    useEffect(()=>{
-      
+    useEffect(()=>{ 
         setId(location.pathname.split("/")[2])
         for (let curr  of reservations) { 
-            console.log(curr)
-            console.log(""+curr.id,location.pathname.split("/")[2])
-            if (""+curr.id==location.pathname.split("/")[2]){
-                console.log("found match")
+            if (""+curr.id===location.pathname.split("/")[2]){
                 setReservation(curr)
             }
-        } 
-        console.log("reservation" ,reservation)
-
-  
+        }       
       },[])
-     
-  
-
-      console.log("reservations",reservations)
-
-      function handleUpdateReservation(updatedReservation) {
-        const updatedReservations = reservation.map((reservation) =>{
-        return reservation.id === updatedReservation.id ? updatedReservation : reservation;
-         } );
-        setReservations(updatedReservations);
-      }
 
 
-      function handleUpdateClick() {
+    function handleReservationUpdate() {
       
   
-        fetch(`/reservation/${reservation.id}`, {
-          method: "PATCH",
-          headers: {
-            "Content-Type": "application/json",
-          },
-          body: JSON.stringify({  }),
-        })
-          .then((r) => r.json())
-          .then((updatedReview) => {
-            handleUpdateReservation(updatedReview);
-          });
-      }
-  
+      fetch(`/reservations/${reservation.id}`, {
+        method: "PATCH",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({
+          name:"",
+          date:"",
+          time:"",
+          num:"",
+          contact:"",
+          occasion:"",
+
+        }),
+      })
+        .then((r) => r.json())
+        .then((updatedReservation) => {
+          onUpdateReservation(updatedReservation);
+        });
+        navigate("/myreservations");
+    }
 
     
     return(
@@ -60,7 +50,7 @@ function EditForm({reservations,setReservations}){
        { reservation &&
        <div>
           <h1>Edit form</h1>
-         <form >
+         <form   onSubmit={handleReservationUpdate}>
         <div >
         <label htmlFor="name"  >Name</label>
          <input type="text" name="name" defaultValue={reservation.name}  placeholder="name" />

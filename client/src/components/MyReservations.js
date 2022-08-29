@@ -9,15 +9,10 @@ function MyReservations({user,reservations,setReservations}){
         .then(reservationData=>{
           setReservations(reservationData)
         })
-      },[])
+      },[setReservations])
 
       // console.log("reservations",reservations)
-      function handleUpdateReservation(updatedReservation) {
-        const updatedReservations = reservations.map((reservation) =>{
-        return reservation.id === updatedReservation.id ? updatedReservation : reservation;
-         } );
-        setReservations(updatedReservations);
-      }
+    
       function handleCancel(reservationtodelete){
         const newReservations=reservations.filter(r=>r.id !== reservationtodelete)
          setReservations(newReservations)
@@ -30,7 +25,7 @@ function MyReservations({user,reservations,setReservations}){
         <>
        
         {reservations.map((reservation)=>(
-        <ReservationCard key={reservation.id} reservation={reservation} handleCancel={handleCancel} handleUpdateReservation={handleUpdateReservation} />
+        <ReservationCard key={reservation.id} reservation={reservation} handleCancel={handleCancel}  />
         
        ))
 
