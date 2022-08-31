@@ -1,7 +1,8 @@
-import {useEffect } from "react";
+import {useEffect, useState } from "react";
 import ReservationCard from "./ReservationCard";
-
+import EditReservationForm from "./EditReservationForm";
 function MyReservations({user,reservations,setReservations}){
+  const[editMode,setEditForm]=useState(false);
    
     useEffect(()=>{
         fetch("/reservations")
@@ -18,18 +19,15 @@ function MyReservations({user,reservations,setReservations}){
          setReservations(newReservations)
          
        }
-
+ const renderReservations=reservations.map((reservation)=>(
+  <ReservationCard key={reservation.id} reservation={reservation} handleCancel={handleCancel}  />
+ ))
 
      
     return(
-        <>
-       
-        {reservations.map((reservation)=>(
-        <ReservationCard key={reservation.id} reservation={reservation} handleCancel={handleCancel}  />
+        <> 
         
-       ))
-
-       }
+        {renderReservations} 
         </>
     )
 }

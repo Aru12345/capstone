@@ -1,6 +1,6 @@
 Rails.application.routes.draw do
   
-  resources :reservations,only: [:index,:create,:update,:destroy]
+  resources :reservations,only: [:index,:show,:create,:update,:destroy]
   resources :reviews,only: [:index,:create,:destroy]
   resources :restaurants,only: [:index]
  

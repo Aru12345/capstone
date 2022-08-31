@@ -4,8 +4,8 @@ import ReservationForm from "./ReservationForm";
 import ReviewCard from "./ReviewCard";
 import { useParams } from "react-router-dom";
 import AddReviewForm from "./AddReviewForm";
-function RestaurantInfo({user,handleAddReviews}){
-const[reviews,setReviews]=useState([]);
+function RestaurantInfo({user,handleAddReviews,reviews,setReviews}){
+
 
 const { id } = useParams();
   
@@ -22,7 +22,11 @@ let filteredReviews = reviews.filter(review => {
   }
   return null;
 })
-    
+function handleDelete(reviewtodelete){
+  const newReviews=reviews.filter(r=>r.id !== reviewtodelete)
+   setReviews(newReviews)
+   
+ }
     return(
         <>
         <h1>Resto Info</h1>
@@ -30,10 +34,10 @@ let filteredReviews = reviews.filter(review => {
 
       <a href="/restaurants"><button>Back</button></a>
       <ReservationForm user={user} />
-      <AddReviewForm user={user} handleAddReviews={handleAddReviews} />
+      <AddReviewForm user={user} handleAddReviews={(review) => setReviews([...reviews, review])} />
       {filteredReviews.map((review) => {
         return (
-          <ReviewCard key={review.id} id={review.id} review={review}  user={user} /> 
+          <ReviewCard key={review.id} id={review.id} review={review}  user={user} handleDelete={handleDelete}/> 
         )
       })}
         </>

@@ -4,6 +4,16 @@ class ReservationsController < ApplicationController
          render json: reservations
       end
 
+      def show
+        reservation = Reservation.find_by(id: params[:id])
+        if reservation
+          render json: reservation
+        else
+          render json: { error: "Reservation not found" }, status: :not_found
+        end
+
+      end
+
     def create
         reservation=Reservation.create!(reservation_params)
         render json: reservation,status: :created
@@ -13,7 +23,7 @@ class ReservationsController < ApplicationController
 
     def update
         reservation = Reservation.find_by(id: params[:id])
-        review.update!(reservation_params)
+        reservation.update!(reservation_params)
         render json: reservation,status: :ok
 
     end

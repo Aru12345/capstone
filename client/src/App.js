@@ -11,10 +11,14 @@ import MyReservations from './components/MyReservations';
 import { Route,Routes } from 'react-router-dom';
 import Blogs from './components/Blogs';
 import EditForm from './components/EditForm';
+import ReservationCard from './components/ReservationCard';
+import {Cont} from './components/Cont'
+import EditReservationForm from './components/EditReservationForm';
 function App() {
   const [user, setUser] = useState(null);
   const[reservations,setReservations]=useState([]);
   const[reviews,setReviews]=useState([]);
+  const[current,setCurrent]=useState({});
   useEffect(() => {
     document.title = "Nyc";
   }, []);
@@ -41,16 +45,17 @@ function App() {
   
   if (!user) return <Loggin error={'please login'} onLogin={setUser} />;
   return (
+    <Cont.Provider value={ {current,setCurrent}}>
     <div className="App">
    <Navbar user={user} setUser={setUser} />
    <Routes>
     <Route exact path="/blogs" element={<Blogs />} />
     
-    <Route exact path="/reservations/:id/update" element={<EditForm reservations={reservations} setReservations={setReservations} onUpdateReservation={handleUpdateReservation} />}/>
-  
+    {/* { <Route exact path="/myreservations/:id/update" element={<EditReservationForm reservations={reservations} setReservations={setReservations} onUpdateReservation={handleUpdateReservation} />}/> } */}
+    
     <Route exact path="/myreservations" element={<MyReservations user={user} reservations={reservations} setReservations={setReservations} />} />
 
-    <Route exact path="/restaurants/:id" element= {<RestaurantInfo handleAddReviews={handleAddReviews} user={user} />}  />
+    <Route exact path="/restaurants/:id" element= {<RestaurantInfo handleAddReviews={handleAddReviews} user={user} reviews={reviews} setReviews={setReviews}/>}  />
 
     <Route exact path="/restaurants" element={<Restaurants />} />
 
@@ -58,7 +63,9 @@ function App() {
 
    </Routes>
    
+   
     </div>
+    </Cont.Provider>
   );
 }
 

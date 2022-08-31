@@ -14,11 +14,14 @@ class ReviewsController < ApplicationController
 
     def destroy
    
-        review = @current_user.review.find(params[:id])
-        if @current_user
-        review.destroy
+     
+        review = Review.find_by(id:params[:id])
+        if review
+          review.destroy
+          head :no_content
+
         else
-            render json: {error: "Review of someone else."}, status: :not_found
+            render json: {error: "Review Not Found ."}, status: :not_found
         end
     end
 
@@ -27,7 +30,7 @@ class ReviewsController < ApplicationController
     private
     
     def review_params
-        params.permit(:img, :r,:user_id,:restaurant_id)
+        params.permit(:img, :r,:user_id,:restaurant_id,:main_image)
 
     end
    
