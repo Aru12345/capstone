@@ -10,10 +10,8 @@ import RestaurantInfo from './components/RestaurantInfo';
 import MyReservations from './components/MyReservations';
 import { Route,Routes } from 'react-router-dom';
 import Blogs from './components/Blogs';
-import EditForm from './components/EditForm';
-import ReservationCard from './components/ReservationCard';
 import {Cont} from './components/Cont'
-import EditReservationForm from './components/EditReservationForm';
+
 function App() {
   const [user, setUser] = useState(null);
   const[reservations,setReservations]=useState([]);
@@ -35,13 +33,6 @@ function App() {
     setReviews([...reviews, newReview]);
   }
 
-  function handleUpdateReservation(updatedReservation) {
-    const updatedReservations = reservations.map((reservation) =>{
-    return reservation.id === updatedReservation.id ? updatedReservation : reservation;
-     } );
-    setReservations(updatedReservations);
-  }
-
   
   if (!user) return <Loggin error={'please login'} onLogin={setUser} />;
   return (
@@ -51,9 +42,7 @@ function App() {
    <Routes>
     <Route exact path="/blogs" element={<Blogs />} />
     
-    {/* { <Route exact path="/myreservations/:id/update" element={<EditReservationForm reservations={reservations} setReservations={setReservations} onUpdateReservation={handleUpdateReservation} />}/> } */}
-    
-    <Route exact path="/myreservations" element={<MyReservations user={user} reservations={reservations} setReservations={setReservations} />} />
+    <Route exact path="/myreservations" element={<MyReservations user={user}  reservations={reservations} setReservations={setReservations}/>} />
 
     <Route exact path="/restaurants/:id" element= {<RestaurantInfo handleAddReviews={handleAddReviews} user={user} reviews={reviews} setReviews={setReviews}/>}  />
 
@@ -70,28 +59,36 @@ function App() {
 }
 
 export default App;
+  // function handleUpdateReservation(updatedReservation) {
+  //   const updatedReservations = reservations.map((reservation) =>{
+  //   return reservation.id === updatedReservation.id ? updatedReservation : reservation;
+  //    } );
+  //   setReservations(updatedReservations);
+  // }
 
-/*
-  <Routes>
+// /*
+//    {/* { <Route exact path="/myreservations/:id/update" element={<EditReservationForm reservations={reservations} setReservations={setReservations} onUpdateReservation={handleUpdateReservation} />}/> } */}
+//     {/* <Route exact path="/myreservations/:id/update"  element={<EditForm />}/> */}
+//   <Routes>
       
-      <Route exact path="/home" element={<Home user={user} />} />
-      <Route exact path="/signup" element={<Signup />} />
-      <Route exact path="/login" element={<Login />} />
+//       <Route exact path="/home" element={<Home user={user} />} />
+//       <Route exact path="/signup" element={<Signup />} />
+//       <Route exact path="/login" element={<Login />} />
     
 
-      </Routes>
-        <Navbar  user={user} setUser={setUser} />  
-         useEffect(() => {
-    // auto-login
-    fetch("/me", { credentials: "same-origin" }).then((r) => {
-      if (r.ok) {
-        r.json().then((user) => setUser(user));
-      }
-    });
-  }, []);
+//       </Routes>
+//         <Navbar  user={user} setUser={setUser} />  
+//          useEffect(() => {
+//     // auto-login
+//     fetch("/me", { credentials: "same-origin" }).then((r) => {
+//       if (r.ok) {
+//         r.json().then((user) => setUser(user));
+//       }
+//     });
+//   }, []);
  
   
-*/
+// */
 
 /*Latest 
 import About from './components/About';

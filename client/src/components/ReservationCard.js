@@ -1,49 +1,44 @@
-import { Link } from "react-router-dom";
-import EditForm from "./EditForm";
-import { useContext,useState } from "react";
-import { Cont } from "./Cont";
-import { useParams } from "react-router-dom";
+import { useState } from "react";
 import EditReservationForm from "./EditReservationForm";
-function ReservationCard({reservation,reservations,setReservations,handleUpdateReservation,handleCancel}){
+function ReservationCard({reservation,handleCancel,onUpdateReservation}){
+ 
+ 
+  const{ name, date, time, num, contact, occasion}=reservation;
+  const [isEditing, setIsEditing] = useState(false);
+  const handleReservationUpdate = (updatedReservation) => {
+    setIsEditing(false);
+    onUpdateReservation(updatedReservation);
+  };
 
-  const {id} = useParams()
-  const{  name, date, time, num, contact, occasion}=reservation;
-      const[editForm,setEditForm]=useState(false);
+  function handleDeleteClick() {
+    fetch(`/reservations/${reservation.id}`, {
+     method: "DELETE",
+       })
+     handleCancel(reservation.id)
+  }
 
-      function handleEditClick(e){
-        if(e.target.name ==='deleter'){
-         
-            fetch(`/reservations/${reservation.id}`, {
-              method: "DELETE",
-            })
-              handleCancel(reservation.id)
-          
-
-        }else{
-          setEditForm(true)
-       
-
-        }
-        
-      }
-
-    
+  
     return(
         <>
-        {editForm ?
-    
-        <div><h2>{name}</h2>
-        <h2>{date}</h2>
-        <h2>{time}</h2>
-        <h2>{num}</h2>
-        <h2>{contact}</h2>
-        <h2>{occasion}</h2>
-        <h3>For-{reservation.restaurant.name}</h3>
-    
-        <button  name="editr" onClick={handleEditClick}>Modify Booking</button>
-        <button name="deleter" onClick={handleEditClick}>Cancel</button>  :<EditReservationForm />}
+        {isEditing ?( <EditReservationForm reservation={reservation}  onUpdateReservation={handleReservationUpdate} />) :(
+           <div>
+           <h2>{name}</h2>
+           <h2>{date}</h2>
+           <h2>{time}</h2>
+           <h2>{num}</h2>
+           <h2>{contact}</h2>
+           <h2>{occasion}</h2>
+           <h3>For-{reservation.restaurant.name}</h3>
+           <button onClick={() => setIsEditing((isEditing) => !isEditing)}>
+              Edit
+            </button>
+            <button onClick={handleDeleteClick}>Cancel Booking</button>
+           </div>
+
+        )}
        
-        </>
+       
+      </>
     )
 }
 export default ReservationCard;

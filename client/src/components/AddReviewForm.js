@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+import { useState } from "react";
 import { useParams } from "react-router-dom";
 
 
@@ -24,13 +24,6 @@ function AddReviewForm({user,handleAddReviews}){
         body: JSON.stringify(newReview),
       };
 
-
-      // function handleReviewChange(event) {
-      //   setreviewData({
-      //     ...reviewData,
-      //     [event.target.name]: event.target.value,
-      //   });
-      // }
       function handleReviewSubmit(event) {
         event.preventDefault();
         fetch(`/reviews`, configObj)
@@ -56,10 +49,7 @@ function AddReviewForm({user,handleAddReviews}){
        accept="image/*" onChange={(e) => setimgData(e.target.value)} />
 
           </div>
-       {/* <div>
-        <label htmlFor="img"  >Image</label>
-         <input type="text" name="img"   value={img}    placeholder="name" />
-       </div> */}
+
        <div>
         <label htmlFor="r"  >Review</label>
          <input type="text" name="r"   value={r}  onChange={(e) => setR(e.target.value)} placeholder="review" />
