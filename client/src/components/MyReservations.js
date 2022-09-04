@@ -2,9 +2,10 @@ import {useEffect, useState } from "react";
 import ReservationCard from "./ReservationCard";
 
 
-function MyReservations({user}){
+function MyReservations(){
   // const[editMode,setEditForm]=useState(false);
   const[reservations,setReservations]=useState([]);
+  
   useEffect(()=>{
     fetch("/reservations")
     .then(res=>res.json())

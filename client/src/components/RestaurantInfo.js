@@ -4,9 +4,11 @@ import ReservationForm from "./ReservationForm";
 import ReviewCard from "./ReviewCard";
 import { useParams } from "react-router-dom";
 import AddReviewForm from "./AddReviewForm";
-function RestaurantInfo({user,handleAddReviews,reviews,setReviews}){
-
-
+import { useContext } from "react";
+import { Cont } from "../Cont";
+function RestaurantInfo(){
+  const {user,reviews,setReviews}=useContext(Cont);
+  
 const { id } = useParams();
   
 useEffect(()=>{
@@ -34,10 +36,10 @@ function handleDelete(reviewtodelete){
 
       <a href="/restaurants"><button>Back</button></a>
       <ReservationForm user={user} />
-      <AddReviewForm user={user} handleAddReviews={(review) => setReviews([...reviews, review])} />
+      <AddReviewForm  handleAddReviews={(review) => setReviews([...reviews, review])} />
       {filteredReviews.map((review) => {
         return (
-          <ReviewCard key={review.id} id={review.id} review={review}  user={user} handleDelete={handleDelete}/> 
+          <ReviewCard key={review.id} id={review.id} review={review}  handleDelete={handleDelete}/> 
         )
       })}
         </>

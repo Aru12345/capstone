@@ -1,5 +1,6 @@
 
 import Map, {Marker} from 'react-map-gl';
+import { Popup } from 'react-map-gl';
 
 import "./Mapstyle.css";
 
@@ -12,7 +13,17 @@ const MAPBOX_TOKEN = 'pk.eyJ1IjoibWFwYm94IiwiYSI6ImNpejY4M29iazA2Z2gycXA4N2pmbDZ
 
 function MyMap(){
 
- 
+      const [showPopup, setShowPopup] = React.useState(true);
+
+    {showPopup && (
+      <Popup longitude={-100} latitude={40}
+        anchor="bottom"
+        onClose={() => setShowPopup(false)}>
+        You are here
+      </Popup>)}
+
+
+     
       return (
       <>
    
@@ -26,7 +37,7 @@ function MyMap(){
       }}
       style={{width: 500, height: 700}}
       mapStyle="mapbox://styles/mapbox/streets-v9">
-   
+         
          <Marker longitude={-73.968152} latitude={40.766968} color="blue" />
           <Marker longitude={-73.9914328} latitude={40.7410352} color="blue" />
           <Marker longitude={-74.0045343} latitude={40.731742} color="blue" />

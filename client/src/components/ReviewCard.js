@@ -1,7 +1,9 @@
 import { useParams } from "react-router-dom";
-function ReviewCard({review,user,handleDelete}){
-
-    const{id,img,r,user:reviewuser}=review
+import { useContext } from "react";
+import { Cont } from "../Cont";
+function ReviewCard({review,handleDelete}){
+  const {user}=useContext(Cont);
+    const{id,img,r,picture,user:reviewuser}=review
     function handleDeleteClick() {
         fetch(`/reviews/${review.id}`, {
           method: "DELETE",
@@ -11,6 +13,7 @@ function ReviewCard({review,user,handleDelete}){
     return(
         <>
         <img src={img}/>
+      <img src={picture} />
         <p></p>
         <p>{r}</p>
         <h6>By {review.user.name}</h6>

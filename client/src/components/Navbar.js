@@ -1,8 +1,9 @@
+import { useContext } from "react";
+import { Cont } from "../Cont";
 
 
-
-function Navbar({ setUser,user}){
-  
+function Navbar(){
+  const {setUser}=useContext(Cont)
   function handleLogoutClick() {
     fetch("/logout", { method: "DELETE" }).then((r) => {
       if (r.ok) {

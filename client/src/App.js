@@ -1,7 +1,7 @@
 
 import './App.css';
 
-import { useEffect,useState } from 'react';
+import { useEffect,useState,useContext } from 'react';
 import About from './components/About'
 import Navbar from './components/Navbar';
 import Restaurants from './components/Restaurants';
@@ -10,13 +10,15 @@ import RestaurantInfo from './components/RestaurantInfo';
 import MyReservations from './components/MyReservations';
 import { Route,Routes } from 'react-router-dom';
 import Blogs from './components/Blogs';
-import {Cont} from './components/Cont'
+import { Cont } from './Cont';
 
 function App() {
-  const [user, setUser] = useState(null);
-  const[reservations,setReservations]=useState([]);
-  const[reviews,setReviews]=useState([]);
-  const[current,setCurrent]=useState({});
+  // const [user, setUser] = useState(null);
+  // const[reservations,setReservations]=useState([]);
+  // const[reviews,setReviews]=useState([]);
+  // const[current,setCurrent]=useState({});
+
+  const {user,setUser,reviews,setReviews}=useContext(Cont)
   useEffect(() => {
     document.title = "Nyc";
   }, []);
@@ -36,25 +38,25 @@ function App() {
   
   if (!user) return <Loggin error={'please login'} onLogin={setUser} />;
   return (
-    <Cont.Provider value={ {current,setCurrent}}>
+    
     <div className="App">
-   <Navbar user={user} setUser={setUser} />
+   <Navbar />
    <Routes>
     <Route exact path="/blogs" element={<Blogs />} />
     
-    <Route exact path="/myreservations" element={<MyReservations user={user}  reservations={reservations} setReservations={setReservations}/>} />
+    <Route exact path="/myreservations" element={<MyReservations />} />
 
-    <Route exact path="/restaurants/:id" element= {<RestaurantInfo handleAddReviews={handleAddReviews} user={user} reviews={reviews} setReviews={setReviews}/>}  />
+    <Route exact path="/restaurants/:id" element= {<RestaurantInfo  />}  />
 
     <Route exact path="/restaurants" element={<Restaurants />} />
 
-     <Route exact path="/about" element={<About user={user} />} />
+     <Route exact path="/about" element={<About  />} />
 
    </Routes>
    
    
     </div>
-    </Cont.Provider>
+
   );
 }
 
