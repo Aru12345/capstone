@@ -9,8 +9,9 @@ function ContProvider({children}){
    const[reviews,setReviews]=useState([]);
    const[reservations,setReservations]=useState([]);
    const [showLogin, setShowLogin] = useState(true);
+   const [errors, setErrors] = useState([]);
 
-   return <Cont.Provider value={{user,setUser,reviews,setReviews,reservations,setReservations,showLogin,setShowLogin}}>
+   return <Cont.Provider value={{user,setUser,reviews,setReviews,reservations,setReservations,showLogin,setShowLogin,errors,setErrors}}>
 
       {children}
    </Cont.Provider>

@@ -66,13 +66,13 @@
 .overlay {
   background: rgb(255, 255, 255,0.5);
   position: absolute;
-  height: 55%;
+  height: 75%;
   left: 0;
   right: 0;
   width: 30%;
   max-width: 45em;
   margin: auto auto 1em;
-  margin-top: 8%;
+  margin-top: 5%;
   box-sizing: border-box;
   padding: 2em;
   line-height: 1.5;
