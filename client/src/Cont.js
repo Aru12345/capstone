@@ -7,8 +7,10 @@ import { useState } from "react";
 function ContProvider({children}){
    const [user, setUser] = useState(null);
    const[reviews,setReviews]=useState([]);
+   const[reservations,setReservations]=useState([]);
+   const [showLogin, setShowLogin] = useState(true);
 
-   return <Cont.Provider value={{user,setUser,reviews,setReviews}}>
+   return <Cont.Provider value={{user,setUser,reviews,setReviews,reservations,setReservations,showLogin,setShowLogin}}>
 
       {children}
    </Cont.Provider>

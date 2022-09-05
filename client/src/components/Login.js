@@ -1,18 +1,44 @@
-import "./Login.css"
+import "./stylingfolder/Login.css"
 
-import tsquare from '../mediafiles/tsquare.mp4'
-import "./TimesSquare.css";
+import tsquare from "../mediafiles/tsquare.mp4";
+import "./stylingfolder/TimesSquare.css";
 
-import { useState} from "react"
+import { useState } from "react";
 import { useNavigate } from "react-router-dom";
+import { useContext } from "react";
+import { Cont } from "../Cont";
 
-function Login({onLogin}){
+import Box from '@mui/material/Box';
+import FilledInput from '@mui/material/FilledInput';
+import FormControl from '@mui/material/FormControl';
+import FormHelperText from '@mui/material/FormHelperText';
+import Input from '@mui/material/Input';
+import InputLabel from '@mui/material/InputLabel';
+import OutlinedInput from '@mui/material/OutlinedInput';
+import Button from '@mui/material/Button';
+import Stack from '@mui/material/Stack';
+import { styled } from '@mui/material/styles';
+import { purple } from '@mui/material/colors';
+
+const ColorButton = styled(Button)(({ theme }) => ({
+  color: theme.palette.getContrastText(purple[500]),
+  backgroundColor: purple[500],
+  '&:hover': {
+    backgroundColor: purple[700],
+  },
+}));
+
+function Login({ onLogin }) {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [errors, setErrors] = useState([]);
   const [isLoading, setIsLoading] = useState(false);
+  const {setShowLogin}=useContext(Cont)
+  
 
-  const navigate=useNavigate();
+  const navigate = useNavigate();
+
+
   function handleSubmit(e) {
     e.preventDefault();
     setIsLoading(true);
@@ -30,56 +56,93 @@ function Login({onLogin}){
         r.json().then((err) => setErrors(err.errors));
       }
     });
-    navigate('/about')
+    navigate("/about");
   }
 
-    
+  return (
+    <>
+      <Box
+      component="form"
+      sx={{
+        '& > :not(style)': { m: 1 },
+      }}
+      noValidate
+      autoComplete="off"
+      onSubmit={handleSubmit}
+    >
+      
+      {/* <form  onSubmit={handleSubmit}> */}
+      <h1 className="loginheadings">Big Apple Explorer 🍎</h1>
+          <h2 className="loginheadings">Get Started</h2>
+          {/* <div >
+            <label htmlFor="email" >
+              Email
+            </label>
+            <input
+              type="text"
+              id="email"
+              
+              value={email}
+              onChange={(e) => setEmail(e.target.value)}
+            />
+          </div> */}
 
-    return(
-        <>
-      <div class="video-container">
-    <video autoPlay muted loop id="myVideo">
-        <source  src={tsquare} type="video/mp4"/> 
-    
-     </video>
-     
-     <form  className="tour" onSubmit={handleSubmit} >
-
-  
-<div className="mb-3">
-        <label htmlFor="email"  className="form-label thelabel" >Email</label>
-        <input
+          <FormControl fullWidth={2}>
+        <InputLabel htmlFor="component-outlined" >Email</InputLabel>
+        <OutlinedInput
+        
           type="text"
+          // id="email"
           id="email"
-          className="form-control"
           value={email}
           onChange={(e) => setEmail(e.target.value)}
+          label="Name"
         />
-    </div>
-  <div>
-  <label htmlFor="password"  className="form-label thelabel">Password</label>
-        <input
+      </FormControl>
+          {/* <div>
+            <label htmlFor="password">
+              Password
+            </label>
+            <input
+              type="password"
+              id="password"
+              
+              value={password}
+              onChange={(e) => setPassword(e.target.value)}
+            />
+          </div> */}
+          <FormControl  fullWidth={2}>
+        <InputLabel htmlFor="component-outlined">Password</InputLabel>
+        <OutlinedInput
+         
           type="password"
           id="password"
-          className="form-control"
+          
           value={password}
           onChange={(e) => setPassword(e.target.value)}
+          label="Name"
         />
-  </div>
-  <button type="submit" className="btn btn-primary" >
-          {isLoading ? "Loading..." : "Login"}
-        </button>
-</form>
-
-     </div>
-        
-
-    
-        
-   </>
-    )
+      </FormControl>
+      <Stack paddingLeft={15}  direction="row" id="loginbutton">
+     
+      <ColorButton variant="contained" type="submit"> {isLoading ? "Loading..." : "Login"}</ColorButton>
+      
+    </Stack>
+          {/* <button type="submit" >
+            {isLoading ? "Loading..." : "Login"}
+          </button> */}
+        {/* </form> */}
+        <h3 className="loginheadings">Don't have an account? </h3>
+              {/* <button   onClick={() => setShowLogin(false)}>
+               
+              </button> */}
+              <Stack paddingLeft={15}  direction="row" id="loginbutton">
+     
+     <ColorButton variant="contained" type="submit"  onClick={() => setShowLogin(false)}> Sign Up</ColorButton>
+     
+   </Stack>
+      </Box>
+    </>
+  );
 }
 export default Login;
-
-
-

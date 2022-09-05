@@ -1,11 +1,15 @@
 import { useState} from "react";
 import { useParams } from "react-router-dom";
 import { useNavigate } from "react-router-dom";
-
-function ReservationForm({user}){
+import { useContext } from "react";
+import { Cont } from "../Cont";
+function ReservationForm(){
     const navigate = useNavigate();
     const params = useParams();
+    const {user,reservations,setReservations}=useContext(Cont)
 
+
+    
     const[reservationData,setReservationData]=useState({
         name:"",
         date:"",
@@ -20,6 +24,7 @@ function ReservationForm({user}){
             [event.target.name]: event.target.value,
         })
     }
+    
     function handleReservationSubmit(event){
         event.preventDefault();
         const newReservation={

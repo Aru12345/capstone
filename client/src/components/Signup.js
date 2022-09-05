@@ -1,7 +1,8 @@
 import { useState} from "react"
 
 import tsquare from '../mediafiles/tsquare.mp4'
-
+import { useContext } from "react";
+import { Cont } from "../Cont";
 function Signup({onLogin}){
   const [name,setName]=useState("");
   const [email, setEmail] = useState("");
@@ -9,7 +10,7 @@ function Signup({onLogin}){
   
   const [errors, setErrors] = useState([]);
   const [isLoading, setIsLoading] = useState(false);
-
+  const {showLogin,setShowLogin}=useContext(Cont)
 
   function handleSubmit(e) {
     e.preventDefault();
@@ -39,46 +40,50 @@ function Signup({onLogin}){
 
     return(
         <>
-          <div class="video-container">
-    <video autoPlay muted loop id="myVideo">
+          <div>
+    {/* <video autoPlay muted loop id="myVideo">
         <source  src={tsquare} type="video/mp4"/> 
     
-     </video>
+     </video> */}
         <div>
-<h2>Create Account</h2>
+
 <form className="tour"  onSubmit={handleSubmit}  >
+<h3>Create Account</h3>
 <div>
-<label htmlFor="name" className="form-label thelabel" >Name</label>
+<label htmlFor="name"  >Name</label>
         <input
           type="text"
           id="name"
           value={name}
-          className="form-control thelabel"
+     
           onChange={(e) => setName(e.target.value)}
         />
   
-  <label htmlFor="email" className="form-label thelabel">Email</label>
+  <label htmlFor="email" >Email</label>
         <input
           type="text"
           id="email"
           value={email}
-          className="form-control thelabel"
+          
           onChange={(e) => setEmail(e.target.value)}
           
         />
-  <label htmlFor="password" className="form-label thelabel">Password</label>
+  <label htmlFor="password">Password</label>
         <input
           type="password"
           id="password"
           value={password}
-          className="form-control thelabel"
+         
           onChange={(e) => setPassword(e.target.value)}
        
         />
   </div>
-  <button type="submit" className="btn btn-primary">{isLoading ? "Loading..." : "Sign Up"}</button>
+  <button type="submit" >{isLoading ? "Loading..." : "Sign Up"}</button>
 </form>
-
+Already have an account? &nbsp;
+              <button  className="btn btn-primary" onClick={() => setShowLogin(true)}>
+                Log In
+              </button>
 </div>
 </div>
         

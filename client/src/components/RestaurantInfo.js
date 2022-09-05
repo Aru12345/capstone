@@ -35,7 +35,7 @@ function handleDelete(reviewtodelete){
      
 
       <a href="/restaurants"><button>Back</button></a>
-      <ReservationForm user={user} />
+      <ReservationForm user={user}  />
       <AddReviewForm  handleAddReviews={(review) => setReviews([...reviews, review])} />
       {filteredReviews.map((review) => {
         return (

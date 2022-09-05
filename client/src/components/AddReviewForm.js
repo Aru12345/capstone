@@ -4,7 +4,7 @@ import { useParams } from "react-router-dom";
 import { useContext } from "react";
 import { Cont } from "../Cont";
 
-
+// handleAddReviews={(review) => setReviews([...reviews, review])} 
 function AddReviewForm({handleAddReviews}){
   const {user}=useContext(Cont);
     const params = useParams();

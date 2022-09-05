@@ -1,3 +1,4 @@
+import ContProvider from './Cont'
 import React from 'react';
 import ReactDOM from 'react-dom';
 
@@ -9,7 +10,7 @@ import {BrowserRouter as Router} from 'react-router-dom';
 import 'mapbox-gl/dist/mapbox-gl.css';
 require("dotenv").config()
 
-import ContProvider from './Cont'
+
 
 ReactDOM.render(
   <React.StrictMode>
