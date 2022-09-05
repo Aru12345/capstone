@@ -1,7 +1,7 @@
 
 import './App.css';
 
-import { useEffect,useState,useContext } from 'react';
+import { useEffect,useContext } from 'react';
 import About from './components/About'
 import Navbar from './components/Navbar';
 import Restaurants from './components/Restaurants';
@@ -11,14 +11,12 @@ import MyReservations from './components/MyReservations';
 import { Route,Routes } from 'react-router-dom';
 import Blogs from './components/Blogs';
 import { Cont } from './Cont';
+import "./App.css";
 
 function App() {
-  // const [user, setUser] = useState(null);
-  // const[reservations,setReservations]=useState([]);
-  // const[reviews,setReviews]=useState([]);
-  // const[current,setCurrent]=useState({});
+  
 
-  const {user,setUser,reviews,setReviews}=useContext(Cont)
+  const {user,setUser}=useContext(Cont)
   useEffect(() => {
     document.title = "Nyc";
   }, []);
@@ -31,9 +29,7 @@ function App() {
       }
     });
   }, [setUser]);
-  function handleAddReviews(newReview) {
-    setReviews([...reviews, newReview]);
-  }
+  
 
   
   if (!user) return <Loggin error={'please login'} onLogin={setUser} />;

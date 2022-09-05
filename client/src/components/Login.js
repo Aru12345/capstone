@@ -27,7 +27,7 @@ function Login({ onLogin }) {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [isLoading, setIsLoading] = useState(false);
-  const { setShowLogin, errors, setErrors } = useContext(Cont);
+  const { setShowLogin, setErrors } = useContext(Cont);
 
   const navigate = useNavigate();
 

@@ -23,7 +23,7 @@ function Restaurants(){
       let displayRestaurants = restaurants;
   if (filterBy) {
     displayRestaurants = displayRestaurants.filter((r) => {
-      return r.category >= filterBy;
+      return r.category == filterBy;
     });
   }
 
@@ -35,7 +35,7 @@ function Restaurants(){
         <Filter handleFilter={handleFilter} />
         
         {
-            restaurants.map((restaurant)=>(
+            displayRestaurants.map((restaurant)=>(
                 <Rcard key={restaurant.id} restaurant={restaurant}/>
             ))
         }
