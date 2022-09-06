@@ -3,19 +3,28 @@ import { Cont } from "../Cont";
 import "./stylingfolder/Navbar.css";
 
 import { Button } from "@mui/material";
+import Stack from '@mui/material/Stack';
 import { purple } from '@mui/material/colors';
-import styled from "@emotion/styled";
+import { styled } from '@mui/material/styles';
+import {indigo} from '@mui/material/colors';
+import { createTheme } from '@mui/material/styles';
 
+const ColoredButton = styled(Button)(({ theme }) => ({
+  color: theme.palette.getContrastText(indigo[500]),
+  backgroundColor:indigo[500],
+  '&:hover': {
+    backgroundColor:indigo[700],
+  },
+}));
 
 
 const ColorButton = styled(Button)(({ theme }) => ({
   color: theme.palette.getContrastText(purple[500]),
   backgroundColor: purple[500],
-  "&:hover": {
+  '&:hover': {
     backgroundColor: purple[700],
   },
 }));
-
 function Navbar(){
   const {setUser}=useContext(Cont)
   function handleLogoutClick() {
@@ -37,7 +46,7 @@ function Navbar(){
         justifyContent: "space-evenly",
         marginLeft: "80px",
         marginRight: "40px",
-        padding: "15px",
+        padding: "28px",
       
       }}
     >
@@ -46,12 +55,12 @@ function Navbar(){
    About
 </Link> */}
 
-<ColorButton href="/about" variant="contained">About</ColorButton>
+<ColoredButton href="/about" variant="contained">Home</ ColoredButton>
 
-<ColorButton  href="/restaurants" variant="contained">Explore</ColorButton>
+<ColoredButton href="/restaurants" variant="contained">Explore</ColoredButton>
 
-<ColorButton  href="/myreservations" variant="contained">My Reservations</ColorButton>
-<ColorButton href="/blogs" variant="contained">Blogs</ColorButton>
+<ColoredButton  href="/myreservations" variant="contained">My Bookings</ColoredButton>
+<ColoredButton href="/blogs" variant="contained">Blogs</ColoredButton>
 <ColorButton  variant="contained" size="large" onClick={handleLogoutClick}>
         Logout
         </ColorButton>
