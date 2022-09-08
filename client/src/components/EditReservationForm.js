@@ -1,4 +1,6 @@
 import { useState } from "react";
+
+
 function EditReservationForm({reservation,onUpdateReservation}){
     const{ name, date, time, num, contact, occasion}=reservation;
     const[updateName,setUpdatedName]=useState(name);
@@ -7,6 +9,9 @@ function EditReservationForm({reservation,onUpdateReservation}){
    const[updateNum,setUpdatedNum]=useState(num);
    const[updateContact,setUpdatedContact]=useState(contact);
    const[updateOccasion,setUpdatedOccasion]=useState(occasion);
+
+
+  
 
    function handleEditClick(e) {
        e.preventDefault()
@@ -27,6 +32,7 @@ function EditReservationForm({reservation,onUpdateReservation}){
         <>
        <h2>Modify Reservation</h2>
        <form onSubmit={handleEditClick}  >
+       
         <div >
         <label htmlFor="name"  >Name</label>
          <input type="text" name="name"  value={updateName}    onChange={(e) => setUpdatedName(e.target.value)} placeholder="name" />
