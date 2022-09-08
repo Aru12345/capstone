@@ -1,7 +1,10 @@
 class Review < ApplicationRecord
   belongs_to :user
   belongs_to :restaurant
-  has_one_attached :picture
+  # has_one_attached :picture
+  has_many_attached :images do |attachable|
+    attachable.variant :thumb,reseize_to_limit: [100,200]
+  end
 
 
   validates :r, length: { maximum: 1000,

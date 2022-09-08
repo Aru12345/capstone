@@ -31,4 +31,5 @@
 /config/master.key
 
 /.env 
-
+.env  
+config.js

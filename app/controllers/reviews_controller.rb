@@ -30,7 +30,7 @@ class ReviewsController < ApplicationController
     private
     
     def review_params
-        params.permit(:img, :r,:user_id,:restaurant_id,:picture)
+        params.permit(:img, :r,:user_id,:restaurant_id,images:[])
 
     end
    

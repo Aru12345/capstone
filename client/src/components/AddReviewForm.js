@@ -10,13 +10,11 @@ function AddReviewForm({handleAddReviews}){
     const params = useParams();
    const[img,setImg]=useState("");
    const[r,setR]=useState("");
-   const[imgData,setimgData]=useState("");
 
    
       const newReview = {
         img,
         r,
-        imgData,
         restaurant_id: params.id,
         user_id: user.id,
       };
@@ -51,7 +49,8 @@ function AddReviewForm({handleAddReviews}){
         <form onSubmit={handleReviewSubmit}>
           
           <div>
-            <input type="file" name="newPhoto"accept="image/png, image/jpeg"  />
+          <label htmlFor="r" >Image Url</label>
+            <input type="text" name="img" value={img} onChange={(e)=>setImg(e.target.value)} placeholder="image"  />
           </div>
 
        <div>

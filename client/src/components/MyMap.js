@@ -7,13 +7,14 @@ import "./Mapstyle.css";
 import * as React from 'react';
 
 /* eslint import/no-webpack-loader-syntax: off */
-const MAPBOX_TOKEN = 'pk.eyJ1IjoibWFwYm94IiwiYSI6ImNpejY4M29iazA2Z2gycXA4N2pmbDZmangifQ.-g_vE53SD2WrJ6tFX7QHmA';
+// const MAPBOX_TOKEN = 'pk.eyJ1IjoibWFwYm94IiwiYSI6ImNpejY4M29iazA2Z2gycXA4N2pmbDZmangifQ.-g_vE53SD2WrJ6tFX7QHmA';
 
 
 
 function MyMap(){
 
       const [showPopup, setShowPopup] = React.useState(true);
+      console.log()
 
     {showPopup && (
       <Popup longitude={-100} latitude={40}
@@ -30,7 +31,7 @@ function MyMap(){
 
 ;
 
-     <Map mapboxAccessToken={MAPBOX_TOKEN}  initialViewState={{
+     <Map mapboxAccessToken="pk.eyJ1IjoibWFwYm94IiwiYSI6ImNpejY4M29iazA2Z2gycXA4N2pmbDZmangifQ.-g_vE53SD2WrJ6tFX7QHmA" initialViewState={{
         latitude: 40.758896,
         longitude: -73.985130,
         zoom: 11.88
