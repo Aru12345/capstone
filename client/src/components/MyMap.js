@@ -36,7 +36,7 @@ function MyMap(){
         longitude: -73.985130,
         zoom: 11.88
       }}
-      style={{width: 500, height: 700}}
+      style={{width: 550, height: 700}}
       mapStyle="mapbox://styles/mapbox/streets-v9">
          
          <Marker longitude={-73.968152} latitude={40.766968} color="blue" />
