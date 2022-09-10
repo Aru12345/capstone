@@ -25,7 +25,7 @@ function Rcard({restaurant}){
           {name}
         </Typography>
         <Typography variant="body2" color="text.secondary">
-        {category}  |  {cost}
+        {category}  |  {cuisine}  | {cost}
         <br />
         {address}
         <br />
