@@ -7,6 +7,8 @@ import AddReviewForm from "./AddReviewForm";
 import { useContext } from "react";
 import { Cont } from "../Cont";
 import "./stylingfolder/RestoInfo.css";
+import "./stylingfolder/EditReservation.css";
+
 
 import * as React from 'react';
 import { styled } from '@mui/material/styles';
@@ -55,15 +57,23 @@ function handleDelete(reviewtodelete){
       </Box>
       <Grid container direction="row" justifyContent="center">
       <Grid item xs={6}>
+      
       <ReservationForm user={user}  />
+    
       </Grid>
       <Grid item xs={6}>
+      <Box m={2} >
       <AddReviewForm  handleAddReviews={(review) => setReviews([...reviews, review])} />
+      </Box>
+      <Box style={{maxHeight: '50vh', overflow: 'auto'}} className="overlay4"  >
       {filteredReviews.map((review) => {
         return (
+          <Box marginBottom={2} marginLeft={10}  >
           <ReviewCard key={review.id} id={review.id} review={review}  handleDelete={handleDelete}/> 
+          </Box>
         )
       })}
+      </Box>
       </Grid>
       </Grid>
         </>

@@ -13,10 +13,81 @@
 }
 
 .editheadings{
-  color:rgb(93, 90, 90);
+  color:rgb(109, 105, 105);
+}
+.editheadings1{
+  color:rgb(94, 94, 94);
 }
 
 .inputstyle{
 
   width: 54%;
+}
+
+.overlay3{
+  background: rgb(255, 255, 255,0.5);
+  width: 70%;
+   height: 91%;
+ 
+   margin: auto auto 1em;
+   margin-top: 5%;
+   box-sizing: border-box;
+   padding: 2em;
+   line-height: 1.5;
+   text-align: center;
+   border-radius: 2%;
+}
+.overlay4{
+  background: rgba(2, 39, 118, 0.107);
+  width: 90%;
+   height: 91%;
+ 
+   margin: auto auto 1em;
+   margin-top: 5%;
+   box-sizing: border-box;
+   padding: 2em;
+   line-height: 1.5;
+   text-align: center;
+   border-radius: 2%;
+}
+.overlay5{
+  background: rgba(115, 143, 203, 0.107);
+  width: 90%;
+   height: 31%;
+ 
+   margin: auto auto 1em;
+   margin-top: 5%;
+   box-sizing: border-box;
+   padding: 2em;
+   line-height: 1.5;
+   text-align: center;
+   border-radius: 2%;
+}
+.overlay6{
+  background: rgba(115, 143, 203, 0.107);
+  width: 90%;
+  margin: auto auto 1em;
+  margin: auto auto 1em;
+  margin-top: 5%;
+  box-sizing: border-box;
+  padding: 2em;
+  line-height: 1.5;
+  text-align: center;
+  border-radius: 2%; 
+}
+  /*
+   height: 31%;
+ 
+   margin: auto auto 1em;
+   margin-top: 5%;
+   box-sizing: border-box;
+   padding: 2em;
+   line-height: 1.5;
+   text-align: center;
+   border-radius: 2%; */
+
+
+.extraf{
+  margin-right: 2%;
+  margin-bottom: 1%;
 }

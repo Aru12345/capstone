@@ -79,7 +79,7 @@ function EditReservationForm({ reservation, onUpdateReservation }) {
           <OutlinedInput
             type="text"
             // id="email"
-            id="email"
+            id="name"
             value={updateName}
             onChange={(e) => setUpdatedName(e.target.value)}
             label="Name"
