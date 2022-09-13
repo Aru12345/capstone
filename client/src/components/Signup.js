@@ -26,7 +26,7 @@ function Signup({ onLogin }) {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [isLoading, setIsLoading] = useState(false);
-  const { setShowLogin, setErrors } = useContext(Cont);
+  const { setShowLogin,errors, setErrors } = useContext(Cont);
 
   function handleSubmit(e) {
     e.preventDefault();
@@ -102,6 +102,9 @@ function Signup({ onLogin }) {
           By clicking Sign Up, you agree to our Terms, Privacy Policy and
           Cookies Policy.
         </p>
+         <div> {errors.map((err) => (
+         <h3  key={err}>{err}</h3>
+        ))}</div>
         <Stack paddingLeft={15} direction="row" id="loginbutton">
           <ColorButton variant="contained" type="submit">
             {isLoading ? "Loading..." : "Sign Up"}

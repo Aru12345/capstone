@@ -20,6 +20,13 @@ class ReservationsController < ApplicationController
 
 
     end
+    # user = User.find_by(email: params[:email]) #verifying
+    # if user&.authenticate(params[:password])
+    #   session[:user_id] = user.id
+    #   render json: user
+    # else
+    #   render json: { errors: ["Invalid username or password"] }, status: :unauthorized
+    # end
 
     def update
         reservation = Reservation.find_by(id: params[:id])

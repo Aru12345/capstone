@@ -27,7 +27,7 @@ function Login({ onLogin }) {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [isLoading, setIsLoading] = useState(false);
-  const { setShowLogin, setErrors } = useContext(Cont);
+  const { setShowLogin,errors, setErrors } = useContext(Cont);
 
   const navigate = useNavigate();
 
@@ -92,7 +92,11 @@ function Login({ onLogin }) {
             {" "}
             {isLoading ? "Loading..." : "Login"}
           </ColorButton>
+
         </Stack>
+        <div> {errors.map((err) => (
+         <h3  key={err}>{err}</h3>
+        ))}</div>
 
         <h3 className="loginheadings">Don't have an account? </h3>
 

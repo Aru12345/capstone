@@ -19,7 +19,7 @@ function Loggin({ onLogin }) {
           </div>
         ) : (
           <>
-            <div className="overlay">
+            <div className="overlay10">
               <Signup onLogin={onLogin} />
             </div>
           </>
