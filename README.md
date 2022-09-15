@@ -1,10 +1,13 @@
 # Project Template: React/Rails API
 
 ## Description
+Big Apple was the first place I travelled too.Trying out exotic cuisines in different places 
+has always been my favourite pastime.Big Apple Exploerer is a Restaurant/Review application.It is kind of a Zomato Clone.Users can surf through restaurants in NYC. They can reserve a table
+and also add reviews/ratings for the same.One can also surf through other users reviews.
 
-This project is scaffolded so that you can build a React frontend and Rails
-backend together, and easily deploy them to Heroku.
-
+## User Story
+As a User I can LogIn and LogOut of the site.I can surf through restaurants and even view
+them pinned on a map integrated by a third party service. I can reserve a table for a restaurant and even edit my reservation or delete the same.I can view reviews give by other people.I can write a review for any restaurants and share my experience.I can delte my own review but not reviews of other people.
 ## Requirements
 
 - Ruby 2.7.4
@@ -325,3 +328,13 @@ For additional support, check out these guides on Heroku:
 [postgres downloads page]: https://postgresapp.com/downloads.html
 [heroku rails deploying guide]: https://devcenter.heroku.com/articles/getting-started-with-rails6
 [troubleshooting guide on heroku]: https://devcenter.heroku.com/articles/getting-started-with-rails6#troubleshooting
+
+## Licensing
+
+Copyright <2022>
+
+Permission is hereby granted, free of charge, to any person obtaining a copy of this software and associated documentation files (the "Software"), to deal in the Software without restriction, including without limitation the rights to use, copy, modify, merge, publish, distribute, sublicense, and/or sell copies of the Software, and to permit persons to whom the Software is furnished to do so, subject to the following conditions:
+
+The above copyright notice and this permission notice shall be included in all copies or substantial portions of the Software.
+
+THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
