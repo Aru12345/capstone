@@ -1,10 +1,3 @@
-# This file should contain all the record creation needed to seed the database with its default values.
-# The data can then be loaded with the bin/rails db:seed command (or created alongside the database with db:setup).
-#
-# Examples:
-#
-#   movies = Movie.create([{ name: 'Star Wars' }, { name: 'Lord of the Rings' }])
-#   Character.create(name: 'Luke', movie: movies.first)
 
 #User
 
@@ -29,7 +22,7 @@ uqc=Restaurant.create(name:"Union Square Cafe",cuisine:"Cafe",cost:"$$",address:
 act=Restaurant.create(name:"Apotheke Chinatown",cuisine:"Sichuhan,Cocktail Bar",cost:"$$$",address:" 9 Doyers St, New York, NY 10013, United States",hours:"6:30pm -2am",closed:"Tuesday closed",phone:"+1 212-406-0400",must_try:"Spicy Prawn Dumpling,Kung Pao Squids,Chicken and Coriander Dumplings,Blue Jacket,White Lady",category:"bar",website:"https://www.apothekemixology.com/",image:"https://i.pinimg.com/originals/67/a4/52/67a452db69553966eb597ad476b439f7.jpg")
 royalty=Restaurant.create(name:"The Royalton Park Ave Rooftop Lounge & Pool",cuisine:"American",cost:"$$$$",address:" 420 Park Ave S, New York, NY 10016, United States",hours:"7pm-3am",closed:"Monday-Thursday",phone:"+1 212-602-3202",must_try:"Caipirinha with Candy Floss,The Midnight Mary",category:"bar",website:"https://www.royaltonparkavenue.com/eat-and-drink/",image:"https://imgcy.trivago.com/c_limit,d_dummy.jpeg,f_auto,h_1300,q_auto,w_2000/itemimages/14/36/1436082_v7.jpeg")
 
-#puts "Done res"
+puts "Done res"
 
 
 #Review

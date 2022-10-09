@@ -1,6 +1,3 @@
-import "./stylingfolder/Login.css";
-import "./stylingfolder/TimesSquare.css";
-
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { useContext } from "react";
@@ -27,14 +24,14 @@ function Login({ onLogin }) {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [isLoading, setIsLoading] = useState(false);
-  const { setShowLogin,errors, setErrors } = useContext(Cont);
+  const { setShowLogin, errors, setErrors } = useContext(Cont);
 
   const navigate = useNavigate();
 
   function handleSubmit(e) {
     e.preventDefault();
     setIsLoading(true);
-    fetch("/login", {
+    fetch("/login", { /* fetch req to log user In */
       method: "POST",
       headers: {
         "Content-Type": "application/json",
@@ -65,11 +62,10 @@ function Login({ onLogin }) {
         <h1 className="loginheadings">Big Apple Explorer 🍎</h1>
         <h2 className="loginheadings">Get Started</h2>
 
-        <FormControl fullWidth >
+        <FormControl fullWidth>
           <InputLabel htmlFor="component-outlined">Email</InputLabel>
           <OutlinedInput
             type="text"
-            // id="email"
             id="email"
             value={email}
             onChange={(e) => setEmail(e.target.value)}
@@ -77,7 +73,7 @@ function Login({ onLogin }) {
           />
         </FormControl>
 
-        <FormControl fullWidth >
+        <FormControl fullWidth>
           <InputLabel htmlFor="component-outlined">Password</InputLabel>
           <OutlinedInput
             type="password"
@@ -92,11 +88,13 @@ function Login({ onLogin }) {
             {" "}
             {isLoading ? "Loading..." : "Login"}
           </ColorButton>
-
         </Stack>
-        <div> {errors.map((err) => (
-         <h3  key={err}>{err}</h3>
-        ))}</div>
+        <div>
+          {" "}
+          {errors.map((err) => (
+            <h3 key={err}>{err}</h3>
+          ))}
+        </div>
 
         <h3 className="loginheadings">Don't have an account? </h3>
 
@@ -109,8 +107,6 @@ function Login({ onLogin }) {
             {" "}
             Sign Up
           </ColorButton>
-
-        
         </Stack>
       </Box>
     </>

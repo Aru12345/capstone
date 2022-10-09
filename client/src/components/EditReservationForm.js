@@ -9,9 +9,7 @@ import Button from "@mui/material/Button";
 import Stack from "@mui/material/Stack";
 import { styled } from "@mui/material/styles";
 import { purple } from "@mui/material/colors";
-
 import * as React from "react";
-
 import TextField from "@mui/material/TextField";
 import { AdapterDayjs } from "@mui/x-date-pickers/AdapterDayjs";
 import { LocalizationProvider } from "@mui/x-date-pickers/LocalizationProvider";
@@ -24,9 +22,8 @@ const ColorButton = styled(Button)(({ theme }) => ({
   "&:hover": {
     backgroundColor: purple[700],
   },
-  width:200,
-  marginRight:100
- 
+  width: 200,
+  marginRight: 100,
 }));
 
 function EditReservationForm({ reservation, onUpdateReservation }) {
@@ -72,9 +69,8 @@ function EditReservationForm({ reservation, onUpdateReservation }) {
         onSubmit={handleEditClick}
       >
         <h2 className="editheadings">Modify Reservation</h2>
-   
 
-        <FormControl  className="inputstyle">
+        <FormControl className="inputstyle">
           <InputLabel htmlFor="component-outlined">Name</InputLabel>
           <OutlinedInput
             type="text"
@@ -88,13 +84,12 @@ function EditReservationForm({ reservation, onUpdateReservation }) {
         <br />
 
         <FormControl>
-          <LocalizationProvider dateAdapter={AdapterDayjs}  fullWidth>
+          <LocalizationProvider dateAdapter={AdapterDayjs} fullWidth>
             <DatePicker
               label="Date"
               value={updateDate}
               onChange={(val) => setUpdatedDate(val)}
               renderInput={(params) => <TextField {...params} />}
-              
             />
           </LocalizationProvider>
         </FormControl>
@@ -152,44 +147,3 @@ function EditReservationForm({ reservation, onUpdateReservation }) {
   );
 }
 export default EditReservationForm;
-
-{
-  /* <div >
-        <label htmlFor="name"  >Name</label>
-         <input type="text" name="name"  value={updateName}    onChange={(e) => setUpdatedName(e.target.value)} placeholder="name" />
-       </div> */
-}
-{
-  /* <div >
-        <label htmlFor="date"  >Date</label>
-         <input type="date" name="date"   value={updateDate}  onChange={(e) => setUpdatedDate(e.target.value)}  placeholder="date" />
-       </div> */
-}
-{
-  /* <div >
-        <label htmlFor="time"  >Time</label>
-         <input type="time" name="time"  value={updateTime}  onChange={(e) => setUpdatedTime(e.target.value)} placeholder="time" />
-       </div> */
-}
-{
-  /* <div >
-        <label htmlFor="num"  >Num</label>
-         <input type="number" name="num"  value={updateNum}  onChange={(e) => setUpdatedNum(e.target.value)}  placeholder="num" />
-       </div>
-       <div > */
-}
-{
-  /* <div>
-        <label htmlFor="date"  >Contact</label>
-         <input type="tel" name="contact" value={updateContact}  onChange={(e) => setUpdatedContact(e.target.value)}  placeholder="contact" />
-       </div> */
-}
-{
-  /* <div >
-        <label htmlFor="occasion"  >Occasion</label>
-         <input type="text" name="occasion"  value={updateOccasion}   onChange={(e) => setUpdatedOccasion(e.target.value)} placeholder="occasion" />
-       </div> */
-}
-{
-  /* <button type="submit">Update Reservation</button> */
-}

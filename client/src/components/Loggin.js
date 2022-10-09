@@ -1,3 +1,4 @@
+/* Toggles between login and signup pages*/
 import Login from "./Login";
 import Signup from "./Signup";
 import tsquare from "../mediafiles/tsquare.mp4";

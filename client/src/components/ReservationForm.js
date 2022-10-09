@@ -1,6 +1,5 @@
 import { useState } from "react";
 import { useParams } from "react-router-dom";
-import { useNavigate } from "react-router-dom";
 import { useContext } from "react";
 import { Cont } from "../Cont";
 import "./stylingfolder/EditReservation.css";
@@ -13,9 +12,7 @@ import Button from "@mui/material/Button";
 import Stack from "@mui/material/Stack";
 import { styled } from "@mui/material/styles";
 import { purple } from "@mui/material/colors";
-
 import * as React from "react";
-
 import TextField from "@mui/material/TextField";
 import { AdapterDayjs } from "@mui/x-date-pickers/AdapterDayjs";
 import { LocalizationProvider } from "@mui/x-date-pickers/LocalizationProvider";
@@ -33,9 +30,8 @@ const ColorButton = styled(Button)(({ theme }) => ({
 }));
 
 function ReservationForm() {
-  const navigate = useNavigate();
   const params = useParams();
-  const { user,reservations,setReservations} = useContext(Cont);
+  const { user, reservations, setReservations } = useContext(Cont);
 
   const [reservationData, setReservationData] = useState({
     name: "",
@@ -51,12 +47,15 @@ function ReservationForm() {
       [event.target.name]: event.target.value,
     });
   }
+
+  /* Since DatePicker and TimePicker onChange events send the new value instead of event */
   function handleReservationChangeWithNameAndValue(name, newValue) {
     setReservationData({
       ...reservationData,
       [name]: newValue,
     });
   }
+
   function handleReservationSubmit(event) {
     event.preventDefault();
     const newReservation = {
@@ -73,9 +72,7 @@ function ReservationForm() {
       body: JSON.stringify(newReservation),
     })
       .then((r) => r.json())
-      .then(
-
-       function (res){
+      .then(function (res) {
         setReservationData({
           name: "",
           date: "",
@@ -83,111 +80,118 @@ function ReservationForm() {
           num: "",
           contact: "",
           occasion: "",
-        })
-        setReservations([...reservations,res])
-       }
-       
-      );
-    navigate("/myreservations");
+        });
+
+        setReservations([...reservations, res]);
+      });
   }
 
- 
+  function handleAlert() {
+    alert("Your Reservation is confirmed");
+  }
 
   return (
     <>
-    <div  className="overlay3">
-      <Box
-        component="form"
-        sx={{
-          "& > :not(style)": { m: 1 },
-        }}
-        noValidate
-        autoComplete="off"
-        onSubmit={handleReservationSubmit}
-      >
-        <h1 className="editheadings">Reserve 🍽️</h1>
+      <div className="overlay3">
+        <Box
+          component="form"
+          sx={{
+            "& > :not(style)": { m: 1 },
+          }}
+          noValidate
+          autoComplete="off"
+          onSubmit={handleReservationSubmit}
+        >
+          <h1 className="editheadings">Reserve 🍽️</h1>
 
-        <FormControl className="inputstyle">
-          <InputLabel htmlFor="component-outlined">Name</InputLabel>
-          <OutlinedInput
-            type="text"
-            name="name"
-            id="name"
-            value={reservationData.name}
-            onChange={handleReservationChange}
-            label="Name"
-          />
-        </FormControl>
-        <br />
-        <FormControl name="date"  className="inputstyle">
-          <LocalizationProvider
-            dateAdapter={AdapterDayjs}
-            name="date"
-            fullWidth
-          >
-            <DatePicker
-              label="Date"
+          <FormControl className="inputstyle">
+            <InputLabel htmlFor="component-outlined">Name</InputLabel>
+            <OutlinedInput
+              type="text"
+              name="name"
+              id="name"
+              value={reservationData.name}
+              onChange={handleReservationChange}
+              label="Name"
+            />
+          </FormControl>
+          <br />
+          <FormControl name="date" className="inputstyle">
+            <LocalizationProvider
+              dateAdapter={AdapterDayjs}
               name="date"
-              value={reservationData.date || null}
-              onChange={(newVal) =>
-                handleReservationChangeWithNameAndValue("date", newVal)
-              }
-              renderInput={(params) => <TextField {...params} />}
+              fullWidth
+            >
+              <DatePicker
+                label="Date"
+                name="date"
+                value={reservationData.date || null}
+                onChange={
+                  (newVal) =>
+                    handleReservationChangeWithNameAndValue("date", newVal)
+                  /* Since DatePicker and TimePicker onChange events send the new value instead of event */
+                }
+                renderInput={(params) => <TextField {...params} />}
+              />
+            </LocalizationProvider>
+          </FormControl>
+          <FormControl className="inputstyle">
+            <LocalizationProvider dateAdapter={AdapterDayjs}>
+              <TimePicker
+                name="time"
+                label="Time"
+                value={reservationData.time || null}
+                onChange={
+                  (newVal) =>
+                    handleReservationChangeWithNameAndValue("time", newVal)
+                  /* Since DatePicker and TimePicker onChange events send the new value instead of event */
+                }
+                renderInput={(params) => <TextField {...params} />}
+              />
+            </LocalizationProvider>
+          </FormControl>
+          <br />
+          <FormControl className="inputstyle">
+            <InputLabel htmlFor="component-outlined">No. of Guests</InputLabel>
+            <OutlinedInput
+              type="number"
+              name="num"
+              value={reservationData.num}
+              onChange={handleReservationChange}
             />
-          </LocalizationProvider>
-        </FormControl>
-        <FormControl  className="inputstyle">
-          <LocalizationProvider dateAdapter={AdapterDayjs}>
-            <TimePicker
-              name="time"
-              label="Time"
-              value={reservationData.time || null}
-              onChange={(newVal) =>
-                handleReservationChangeWithNameAndValue("time", newVal)
-              }
-              renderInput={(params) => <TextField {...params} />}
+          </FormControl>
+          <br />
+          <FormControl className="inputstyle">
+            <InputLabel htmlFor="component-outlined">Contact</InputLabel>
+            <OutlinedInput
+              type="tel"
+              name="contact"
+              value={reservationData.contact}
+              onChange={handleReservationChange}
+              placeholder="contact"
             />
-             
-          </LocalizationProvider>
-        </FormControl>
-        <br />
-        <FormControl className="inputstyle">
-          <InputLabel htmlFor="component-outlined">No. of Guests</InputLabel>
-          <OutlinedInput
-            type="number"
-            name="num"
-            value={reservationData.num}
-            onChange={handleReservationChange}
-          />
-        </FormControl>
-        <br />
-        <FormControl className="inputstyle">
-          <InputLabel htmlFor="component-outlined">Contact</InputLabel>
-          <OutlinedInput
-            type="tel"
-            name="contact"
-            value={reservationData.contact}
-            onChange={handleReservationChange}
-            placeholder="contact"
-          />
-        </FormControl>
-        <br />
-        <FormControl className="inputstyle">
-          <InputLabel htmlFor="component-outlined">Occasion</InputLabel>
-          <OutlinedInput
-            type="text"
-            name="occasion"
-            value={reservationData.occasion}
-            onChange={handleReservationChange}
-          />
-        </FormControl>
-        <Stack paddingLeft={15} direction="row" id="loginbutton">
-          <ColorButton variant="contained" type="submit">
-            {" "}
-            Reserve
-          </ColorButton>
-        </Stack>
-      </Box>
+          </FormControl>
+          <br />
+          <FormControl className="inputstyle">
+            <InputLabel htmlFor="component-outlined">Occasion</InputLabel>
+            <OutlinedInput
+              type="text"
+              name="occasion"
+              value={reservationData.occasion}
+              onChange={handleReservationChange}
+            />
+          </FormControl>
+          <Stack paddingLeft={15} direction="row" id="loginbutton">
+            <ColorButton
+              variant="contained"
+              type="submit"
+              onClick={handleAlert}
+            >
+              {" "}
+              Reserve
+            </ColorButton>
+          </Stack>
+        </Box>
       </div>
     </>
   );

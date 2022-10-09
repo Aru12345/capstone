@@ -1,4 +1,0 @@
-class AddPhotoToReview < ApplicationRecord
-
- 
-end

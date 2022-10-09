@@ -9,7 +9,6 @@ import CardActions from "@mui/material/CardActions";
 import CardContent from "@mui/material/CardContent";
 import Button from "@mui/material/Button";
 import Typography from "@mui/material/Typography";
-import { Grid } from "@mui/material";
 
 function ReservationCard({ reservation, handleCancel, onUpdateReservation }) {
   const { name, date, time, num, contact, occasion } = reservation;
@@ -31,10 +30,10 @@ function ReservationCard({ reservation, handleCancel, onUpdateReservation }) {
       {isEditing ? (
         <Box m={4} sx={{ width: 500 }}>
           <div className="overlay2">
-          <EditReservationForm
-            reservation={reservation}
-            onUpdateReservation={handleReservationUpdate}
-          />
+            <EditReservationForm
+              reservation={reservation}
+              onUpdateReservation={handleReservationUpdate}
+            />
           </div>
         </Box>
       ) : (
@@ -74,12 +73,3 @@ function ReservationCard({ reservation, handleCancel, onUpdateReservation }) {
   );
 }
 export default ReservationCard;
-
-//  {/* <a href={`/reservations/${reservation.id}/update`}>Edit</a> */}
-
-//      {/* <button  >Modify Booking</button>
-//      <Link to={`/myreservations/${reservation.id}`}>Modify Booking</Link> */}
-//       {/* <Link to={`/reservations/${reservation.id}/update`}>Edit</Link> */}
-//       {/* <button onClick={()=>{
-//         setCurrent(reservation)
-//       }} >Edit</button> */}

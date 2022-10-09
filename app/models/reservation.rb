@@ -6,11 +6,6 @@ class Reservation < ApplicationRecord
   validates :contact,length: {in: 4..15}
   validate :choosing_valid_date
 
-  def choosing_valid_date
-    if date < Date.today
-      errors.add(:date, "can't be in the past")
-    end
-  end
 
 end
 
