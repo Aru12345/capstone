@@ -1,13 +1,14 @@
 # Project Template: React/Rails API
 
 ## Description
-Big Apple was the first place I travelled too.Trying out exotic cuisines in different places 
-has always been my favourite pastime.Big Apple Exploerer is a Restaurant/Review application.It is kind of a Zomato Clone.Users can surf through restaurants in NYC. They can reserve a table
-and also add reviews/ratings for the same.One can also surf through other users reviews.
+
+Big Apple Explorer is a Restaurant/Review application.Users can surf through restaurants in NYC. They can reserve a table and also add reviews/ratings for the same.One can also surf through other users reviews.
 
 ## User Story
+
 As a User I can LogIn and LogOut of the site.I can surf through restaurants and even view
-them pinned on a map integrated by a third party service. I can reserve a table for a restaurant and even edit my reservation or delete the same.I can view reviews give by other people.I can write a review for any restaurants and share my experience.I can delte my own review but not reviews of other people.
+them pinned on a map integrated by a third party service. I can reserve a table for a restaurant and even edit my reservation or delete the same.I can view reviews give by other people.I can write a review for any restaurants and share my experience.I can delete my own review but not reviews of other people.
+
 ## Requirements
 
 - Ruby 2.7.4
